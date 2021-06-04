@@ -10,13 +10,11 @@ import '@/core/middlewares/passport'
 import api from '@/routes/api'
 
 export default class Server {
-  private _host: string
   private _port: number
   private _app: Express | null = null
 
-  public constructor(host: string, port: number) {
+  public constructor(port: number) {
 
-    this._host = host
     this._port = port
   }
 
@@ -44,7 +42,7 @@ export default class Server {
   public async run(): Promise<void> {
     await this._initialize()
     this._app?.listen(this._port, () => {
-      mlog(`✨ Server is listening on ${this._host}:${this._port}`)
+      mlog(`✨ Server is listening on port ${this._port}`)
     })
   }
 }

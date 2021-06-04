@@ -12,9 +12,8 @@ const main = async (): Promise<void> => {
     dotenv.config()
 
     const port = argv[0] || (process.env.PORT as string)
-    const host = argv[1] || (process.env.HOST as string)
 
-    const server = new Server(host, parseInt(port, 10))
+    const server = new Server(parseInt(port, 10))
     await server.run()
   } catch (err) {
     mlog(err.message, 'error')
