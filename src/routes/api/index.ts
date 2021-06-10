@@ -3,12 +3,12 @@ import secured from './secured'
 import passport from 'passport'
 import cors from 'cors'
 
-
 const api = Router()
 api.use(cors())
 
 
-api.get('/', (req: Request, res: Response) => {
+api.get('/', async (req, res: Response) => {
+
   res.json({
     hello: 'From dlmvp Api',
     meta: {

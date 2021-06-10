@@ -1,14 +1,26 @@
 version: '3'
 services:
   web:
+    container_name: web-container
+    restart: always
+    depends_on:
+      - redis
     build:
       context: ./
     volumes:
       - .:/src
-    command: yarn dev
+    links: 
+      - redis     
     ports:
       - "3000:3000"
     environment:
       - PORT=${PORT}
       - DATABASE_URL=${DATABASE_URL}
       - JWT_ENCRYPTION=${JWT_ENCRYPTION}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+  redis:
+    container_name: redis-container
+    image: redis:latest
+    ports:
+      - "6379:6379"

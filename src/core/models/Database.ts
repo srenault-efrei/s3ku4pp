@@ -3,10 +3,6 @@ import { createConnection, Connection } from 'typeorm'
 
 import User from './User'
 
-
-
-
-
 export default class Database {
   private static _instance: Database | null = null
   private _connection: Connection | null = null

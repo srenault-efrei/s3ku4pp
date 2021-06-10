@@ -14,5 +14,7 @@ COPY key.pem /app/
 
 
 RUN yarn install
+CMD ["yarn", "dev"]
+
 EXPOSE 3000
 
