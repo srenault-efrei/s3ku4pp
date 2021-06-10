@@ -41,7 +41,6 @@ export default class Server {
       // Create connection Redis to determinate rateLimiter
       client = redis.createClient({ host: process.env.REDIS_HOST, port: process.env.REDIS_PORT && parseInt(process.env.REDIS_PORT) || 6379 })
     } catch (err) {
-      client = redis.createClient({ host: "localhost", port: 6379 })
       mlog(err.message, 'error')
       process.exit(-1)
 
