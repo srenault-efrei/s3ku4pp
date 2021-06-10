@@ -9,6 +9,9 @@ COPY tsconfig.json /app/
 COPY nodemon.json /app/
 COPY .env /app/
 COPY app.config.json /app/
+COPY cert.pem /app/
+COPY key.pem /app/
+
 
 RUN yarn install
 EXPOSE 3000
