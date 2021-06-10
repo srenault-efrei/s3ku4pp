@@ -1,6 +1,8 @@
 import express, { Express } from 'express'
 import bodyParser from 'body-parser'
 import passport from 'passport'
+import https from 'https'
+import fs from 'fs'
 
 import { mlog } from '@/core/libs/utils'
 import Database from '@/core/models/Database'
@@ -39,9 +41,17 @@ export default class Server {
     this._app.use('/api', api)
   }
 
+
   public async run(): Promise<void> {
+
     await this._initialize()
-    this._app?.listen(this._port, () => {
+
+    const options = {
+      key: fs.readFileSync('key.pem'),
+      cert: fs.readFileSync('cert.pem')
+    }
+    const httpsServer = https.createServer(options, this._app!)
+    httpsServer.listen(this._port, () => {
       mlog(`✨ Server is listening on port ${this._port}`)
     })
   }
