@@ -14,7 +14,6 @@ import bcrypt from 'bcryptjs'
 
 
 @Entity()
-@TableInheritance({ column: { type: "varchar", name: "type" } })
 export default class User extends BaseEntity {
 
   public static SALT_ROUND = 8
@@ -27,6 +26,9 @@ export default class User extends BaseEntity {
 
   @Column({ nullable: false })
   password!: string
+
+  @Column({ nullable: false })
+  name!: string
 
   @CreateDateColumn()
   createdAt!: string

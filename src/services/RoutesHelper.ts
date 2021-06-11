@@ -46,8 +46,6 @@ routesHelper.rateLimiter = (client: redis.RedisClient) => {
                 client.ttl(ip, (err, valutTtl) => {
                     if (err) mlog(err.message, "error")
                     ttl = valutTtl
-                    console.log("request", value)
-                    console.log("ttl", ttl)
                     if (value >= 10 && ttl !== 0) {
                         res.status(403).json({ message: "You have reached the maximum number of requests", requests: value, ttl });
                     } else {
