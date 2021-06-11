@@ -21,5 +21,4 @@ const main = async (): Promise<void> => {
   }
 }
 
-// Let's Rock ! 😘😅
 main()

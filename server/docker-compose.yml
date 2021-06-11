@@ -1,7 +1,9 @@
 version: '3'
 services:
-  web:
-    container_name: web-container
+
+  server:
+    container_name: server-container
+    hostname: server
     restart: always
     depends_on:
       - redis
@@ -9,7 +11,6 @@ services:
       context: ./
     volumes:
       - ./src/:/app/src
-
     links: 
       - redis     
     ports:
@@ -20,8 +21,21 @@ services:
       - JWT_ENCRYPTION=${JWT_ENCRYPTION}
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
+
   redis:
     container_name: redis-container
     image: redis:latest
     ports:
       - "6379:6379"
+
+  nginx: 
+    container_name: nginx    
+    hostname: nginx  
+    build :
+      context: ./../nginx
+    hostname: nginx
+    ports:
+      - "443:443"
+    depends_on:
+      - server
+      
