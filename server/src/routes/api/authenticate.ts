@@ -2,8 +2,8 @@
 import { Router, Request, Response } from 'express'
 import passport from 'passport'
 import { isEmpty } from 'lodash'
-import { error, success } from '../../core/helpers/response'
-import { BAD_REQUEST, CREATED, OK } from '../../core/constants/api'
+import { error, success } from '@/core/helpers/response'
+import { BAD_REQUEST, CREATED, OK } from '@/core/constants/api'
 import jwt from 'jsonwebtoken'
 import User from '@/core/models/User'
 

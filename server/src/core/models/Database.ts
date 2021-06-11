@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 import { createConnection, Connection } from 'typeorm'
+import Phone from './Phone'
 
 import User from './User'
 
@@ -28,7 +29,6 @@ export default class Database {
     }
 
     const [, , username, password, host, port, database] = founded
-    console.log(username, password, host, port, database)
 
     this._connection = await createConnection({
       type: 'postgres',
@@ -37,9 +37,9 @@ export default class Database {
       username,
       password,
       database,
-      entities: [User],
-      dropSchema: false,
-      synchronize: false,
+      entities: [User, Phone],
+      dropSchema: true,
+      synchronize: true,
       logging: false,
     })
     return this._connection
