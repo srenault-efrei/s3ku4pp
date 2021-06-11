@@ -1,21 +1,25 @@
 ## Avant de lancer l'application
 
-Il faut ajouter un .env dans le dossier server 
-
-contenu du .env exemple : 
+Il faut ajouter un .env dans le dossier server, exemple : 
 
 HOST=localhost
+
 PORT=3000
+
 DATABASE_URL=postgres://postgres:test@database:5432/s3ku4pp
+
 JWT_ENCRYPTION=secret
+
 TOKEN=/kHdfUX+u/Kn3qPY4+ahjwQgyV5UhkM5cdh1i2xhozB=
 
 REDIS_HOST=redis
+
 REDIS_PORT=6379
 
-
 USERNAME=postgres
+
 PASSWORD=test
+
 DATABASE=s3ku4pp
 
 ## Après avoir ajouter le .env dans le dossier server
