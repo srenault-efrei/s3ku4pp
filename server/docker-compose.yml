@@ -2,35 +2,42 @@ version: '3'
 services:
 
   server:
-    container_name: server-container
-    hostname: server
     restart: always
     depends_on:
+      - database
       - redis
     build:
       context: ./
     volumes:
       - ./src/:/app/src
     links: 
-      - redis     
-    ports:
-      - "3000:3000"
+      - database
+      - redis
     environment:
       - PORT=${PORT}
       - DATABASE_URL=${DATABASE_URL}
       - JWT_ENCRYPTION=${JWT_ENCRYPTION}
-      - REDIS_HOST=${REDIS_HOST}
-      - REDIS_PORT=${REDIS_PORT}
+
+  database:
+    container_name: postgres-container
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${USERNAME}
+      - POSTGRES_PASSWORD=${PASSWORD}
+      - POSTGRES_DB=${DATABASE}
 
   redis:
-    container_name: redis-container
     image: redis:latest
     ports:
       - "6379:6379"
+    environment:
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
 
   nginx: 
     container_name: nginx    
-    hostname: nginx  
     build :
       context: ./../nginx
     hostname: nginx

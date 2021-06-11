@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:14.17.0-alpine
 
 WORKDIR /app
 COPY src/ /app/src/
@@ -16,5 +16,4 @@ COPY key.pem /app/
 RUN yarn install
 CMD ["yarn", "dev"]
 
-EXPOSE 3000
 

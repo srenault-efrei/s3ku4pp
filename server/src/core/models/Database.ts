@@ -28,6 +28,7 @@ export default class Database {
     }
 
     const [, , username, password, host, port, database] = founded
+    console.log(username, password, host, port, database)
 
     this._connection = await createConnection({
       type: 'postgres',
@@ -40,12 +41,6 @@ export default class Database {
       dropSchema: false,
       synchronize: false,
       logging: false,
-      "ssl": true,
-      "extra": {
-        "ssl": {
-          "rejectUnauthorized": false
-        }
-      }
     })
     return this._connection
   }
